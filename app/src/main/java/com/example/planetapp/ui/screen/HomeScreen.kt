@@ -33,7 +33,7 @@ fun HomeScreen(
         ){
 
             items(PlanetList.planet){
-                CardItem(photo = it.photoUrl, name = it.name)
+                CardItem(photo = it.photoUrl, name = it.name, gradient = it.color)
                 modifier.clickable {  }
             }
         }
