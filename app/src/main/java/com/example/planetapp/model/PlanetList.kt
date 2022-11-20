@@ -37,4 +37,6 @@ object PlanetList {
             color = listOf(Color(rgb(27,118,192)), Color(rgb(32,141,232)))
         ),
     )
+
+    val planetShifled = planet.shuffled()
 }

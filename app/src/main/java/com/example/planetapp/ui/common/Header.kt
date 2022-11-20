@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
@@ -15,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.planetapp.R
@@ -34,7 +36,10 @@ fun Header(
         ) {
             Text(
                 text = "Let's Explore",
-                color = Color.White
+                color = Color.White,
+                style = MaterialTheme.typography.h5.copy(
+                    fontWeight = FontWeight.ExtraBold
+                )
             )
             Text(text = "The milky way galaxy", color = Color.White)
         }
@@ -47,7 +52,7 @@ fun Header(
                 painter = painterResource(R.drawable.mars),
                 contentDescription = "imageclip",
                 modifier
-                    .size(30.dp)
+                    .size(40.dp)
                     .clip(CircleShape)
                     .border(2.dp, Color.White, CircleShape),
             )
@@ -57,7 +62,8 @@ fun Header(
                 contentDescription = "icon",
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .size(10.dp)
+                    .size(20.dp)
+                    .offset(0.dp, -5.dp)
             )
         }
     }

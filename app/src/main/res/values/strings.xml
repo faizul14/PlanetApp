@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PlanetApp</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="menu_profile">Profile</string>
+    <string name="ex_contnet">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel pellentesque elit. Nam pharetra ut ipsum in condimentum. Suspendisse id purus ornare, ultricies nunc sit amet, congue lorem. Donec blandit ornare felis quis feugiat. In hac habitasse platea dictumst. Sed eget turpis efficitur, scelerisque enim sit amet, bibendum justo. Vestibulum commodo arcu mauris, eget imperdiet lorem imperdiet sed. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus ipsum est, congue nec finibus sed, sollicitudin in ipsum. Aenean laoreet tincidunt sapien sed lobortis. Suspendisse potenti.
+
+</string>
 </resources>
