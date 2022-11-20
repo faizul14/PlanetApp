@@ -8,8 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,6 +21,7 @@ import com.example.planetapp.ui.common.*
 fun HomeScreen(
     modifier : Modifier = Modifier
 ) {
+    var dataSearch by remember { mutableStateOf("") }
     Scaffold(
         bottomBar = {
             BottomBar()
@@ -35,7 +35,12 @@ fun HomeScreen(
                 .padding(innerPadding)
         ) {
             Header()
-            SearchBar()
+            SearchBar(
+                input = dataSearch,
+                onChange = {data ->
+                    dataSearch = data
+                }
+            )
             SectionText(content = "Most Popular")
             LazyRow(
                 horizontalArrangement = Arrangement.spacedBy(35.dp),

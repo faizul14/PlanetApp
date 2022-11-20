@@ -21,14 +21,13 @@ import com.example.planetapp.ui.theme.PlanetAppTheme
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
+    input: String,
+    onChange: (String) -> Unit,
 
 ) {
-    val dataSearch = remember {
-        mutableListOf("")
-    }
     TextField(
-        value = "",
-        onValueChange = {},
+        value = input,
+        onValueChange = onChange,
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
