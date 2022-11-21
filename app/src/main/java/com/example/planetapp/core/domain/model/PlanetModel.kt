@@ -1,7 +1,7 @@
-package com.example.planetapp.model
+package com.example.planetapp.core.domain.model
 
 
-data class Planet(
+data class PlanetModel(
     val id: Int,
     val name: String,
     val photoUrl: String,

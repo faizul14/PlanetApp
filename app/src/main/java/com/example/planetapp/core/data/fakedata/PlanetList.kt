@@ -1,4 +1,4 @@
-package com.example.planetapp.model
+package com.example.planetapp.core.data.fakedata
 
 import android.graphics.Color.rgb
 import androidx.compose.ui.graphics.Color

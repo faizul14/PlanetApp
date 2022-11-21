@@ -1,4 +1,4 @@
-package com.example.planetapp.model
+package com.example.planetapp.ui.model
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

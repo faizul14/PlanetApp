@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.commandiron.bubble_navigation_bar_compose.BubbleNavigationBar
 import com.commandiron.bubble_navigation_bar_compose.BubbleNavigationBarItem
 import com.example.planetapp.R
-import com.example.planetapp.model.BottomBatItem
+import com.example.planetapp.ui.model.BottomBatItem
 import com.example.planetapp.ui.theme.PlanetAppTheme
 
 @Composable

@@ -14,13 +14,20 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.planetapp.R
-import com.example.planetapp.model.PlanetList
+import com.example.planetapp.core.data.fakedata.PlanetList
+import com.example.planetapp.presentation.PlanetViewModel
 import com.example.planetapp.ui.common.*
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.planetapp.core.domain.model.PlanetModel
+import com.example.planetapp.presentation.ViewModelFactory
+
 
 @Composable
 fun HomeScreen(
-    modifier : Modifier = Modifier
+    modifier : Modifier = Modifier,
+    viewModel: PlanetViewModel = viewModel(factory = ViewModelFactory.getInstance())
 ) {
+    val data: List<PlanetModel> by viewModel.data.collectAsState()
     var dataSearch by remember { mutableStateOf("") }
     Scaffold(
         bottomBar = {
@@ -47,7 +54,7 @@ fun HomeScreen(
                 contentPadding = PaddingValues(horizontal = 16.dp),
             ) {
 
-                items(PlanetList.planet) {
+                items(data) {
                     CardItem(photo = it.photoUrl, name = it.name, gradient = it.color)
                     modifier.clickable { }
                 }
