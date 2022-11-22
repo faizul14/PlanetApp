@@ -19,4 +19,9 @@ class PlanetRepository() : IPlanetRepository {
     override fun getPlanetList(): List<PlanetModel> {
         return DataMapper.mapDataToDataModel(PlanetList.planet)
     }
+
+    override fun getDetail(id: Int): PlanetModel {
+       val data = PlanetList.planet.first { it.id == id }
+        return DataMapper.mapDataPlanetListToPlanetDetail(data)
+    }
 }

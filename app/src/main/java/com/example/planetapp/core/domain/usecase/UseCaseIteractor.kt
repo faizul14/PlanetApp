@@ -8,4 +8,8 @@ class UseCaseIteractor(val repository: IPlanetRepository) : UseCase {
     override fun getPlanetList(): List<PlanetModel>{
         return repository.getPlanetList()
     }
+
+    override fun getPlanetDetail(id: Int): PlanetModel {
+        return repository.getDetail(id)
+    }
 }

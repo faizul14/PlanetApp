@@ -21,6 +21,9 @@ class ViewModelFactory(val useCase: UseCase) : ViewModelProvider.NewInstanceFact
         if (modelClass.isAssignableFrom(PlanetViewModel::class.java)){
             return PlanetViewModel(useCase) as T
         }
+        if (modelClass.isAssignableFrom(DetailViewModel::class.java)){
+            return DetailViewModel(useCase) as T
+        }
         throw IllegalArgumentException ("Message ${modelClass.name}")
     }
 

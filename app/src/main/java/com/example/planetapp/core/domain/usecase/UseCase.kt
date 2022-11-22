@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface UseCase {
     fun getPlanetList() : List<PlanetModel>
+    fun getPlanetDetail(id: Int) : PlanetModel
 }

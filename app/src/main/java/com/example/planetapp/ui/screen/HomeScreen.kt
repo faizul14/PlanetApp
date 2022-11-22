@@ -24,15 +24,11 @@ import com.example.planetapp.ui.common.*
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: PlanetViewModel = viewModel(factory = ViewModelFactory.getInstance())
+    viewModel: PlanetViewModel = viewModel(factory = ViewModelFactory.getInstance()),
+    navigateToDetail: (Int) -> Unit,
 ) {
     val data: List<PlanetModel> by viewModel.data.collectAsState()
     var dataSearch by remember { mutableStateOf("") }
-//    Scaffold(
-//        bottomBar = {
-//            BottomBar()
-//        }
-//    ) { innerPadding->
     Column(
         modifier
             .verticalScroll(rememberScrollState())
@@ -53,8 +49,10 @@ fun HomeScreen(
         ) {
 
             items(data) {
-                CardItem(photo = it.photoUrl, name = it.name, gradient = it.color)
-                modifier.clickable { }
+                CardItem(photo = it.photoUrl, name = it.name, gradient = it.color,
+                modifier = Modifier.clickable {
+                    navigateToDetail(it.id)
+                })
             }
         }
         Spacer(modifier = modifier.padding(top = 10.dp))
@@ -65,12 +63,13 @@ fun HomeScreen(
         ) {
             items(PlanetList.planetShifled) {
                 CardItemSecond(photo = it.photoUrl, name = it.name, gradient = it.color)
-                modifier.clickable { }
+                modifier.clickable {
+                    navigateToDetail(it.id)
+                }
             }
         }
 
     }
-//    }
 }
 
 @Preview(showBackground = true)

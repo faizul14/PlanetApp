@@ -2,6 +2,7 @@ package com.example.planetapp.core.helper
 
 import com.example.planetapp.core.domain.model.PlanetModel
 import com.example.planetapp.core.data.fakedata.Planet
+import com.example.planetapp.core.data.fakedata.PlanetList
 
 object DataMapper {
     fun mapDataToDataModel(input: List<Planet>) : List<PlanetModel>{
@@ -16,5 +17,15 @@ object DataMapper {
             planetList.addAll(listOf(planet))
         }
         return planetList
+    }
+
+    fun mapDataPlanetListToPlanetDetail(input: Planet): PlanetModel{
+        return PlanetModel(
+            id = input.id,
+            name = input.name,
+            photoUrl = input.photoUrl,
+            color = input.color
+
+        )
     }
 }

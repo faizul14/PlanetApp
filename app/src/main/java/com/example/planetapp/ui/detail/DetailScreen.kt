@@ -10,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -22,12 +24,22 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import com.example.planetapp.presentation.DetailViewModel
+import com.example.planetapp.presentation.ViewModelFactory
 import com.example.planetapp.ui.theme.PlanetAppTheme
 
 @Composable
 fun DetailScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    detailId : Int,
+    navigateBack : () -> Unit,
+    viewModel: DetailViewModel = viewModel(factory = ViewModelFactory.getInstance())
 ) {
+    viewModel.getPlanetId(detailId)
+    val data by viewModel.data.collectAsState()
     Column(
         modifier
             .background(colorResource(id = com.example.planetapp.R.color.bg))
@@ -35,7 +47,13 @@ fun DetailScreen(
             .fillMaxHeight()
             .padding(10.dp)
     ) {
-        ImageLoad()
+        data?.let {
+            ImageLoad(
+                navigateBack = navigateBack,
+                name = it.name,
+                photo = it.photoUrl
+            )
+        }
         Spacer(
             modifier = modifier
                 .height(10.dp)
@@ -51,8 +69,11 @@ fun DetailScreen(
 
 @Composable
 fun ImageLoad(
-    modifier: Modifier = Modifier
-) {
+    modifier: Modifier = Modifier,
+    navigateBack : () -> Unit,
+    name: String,
+    photo: String,
+    ) {
     Box(
         modifier
             .fillMaxWidth()
@@ -65,10 +86,12 @@ fun ImageLoad(
             tint = Color.White,
             modifier = Modifier
                 .align(Alignment.TopStart)
-                .clickable { },
+                .clickable {
+                    navigateBack()
+                },
         )
-        Image(
-            painter = painterResource(com.example.planetapp.R.drawable.mars),
+        AsyncImage(
+            model = photo,
             contentDescription = "imageclip",
             modifier
                 .fillMaxWidth()
@@ -84,7 +107,7 @@ fun ImageLoad(
                 .align(Alignment.BottomStart)
         ) {
             Text(
-                text = "Mercury",
+                text = name,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
                 fontSize = 30.sp,
@@ -133,6 +156,6 @@ fun Content() {
 @Composable
 fun DetailScreenPreview() {
     PlanetAppTheme {
-        DetailScreen()
+//        DetailScreen()
     }
 }

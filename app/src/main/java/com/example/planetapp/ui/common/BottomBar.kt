@@ -5,12 +5,14 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.commandiron.bubble_navigation_bar_compose.BubbleNavigationBar
 import com.commandiron.bubble_navigation_bar_compose.BubbleNavigationBarItem
 import com.example.planetapp.R
@@ -25,6 +27,8 @@ fun BottomBar(
 ) {
 
     BubbleNavigationBar {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
         val navigationItems = listOf(
             BottomBatItem(
                 title = stringResource(R.string.menu_home),
@@ -45,7 +49,7 @@ fun BottomBar(
         navigationItems.forEach { navigationItem ->
             BubbleNavigationBarItem(
 //                selected = navigationItem.title == navigationItem.title,
-                selected = true,
+                selected = currentRoute == navigationItem.screen.route,
                 onClick = {
                     navController.navigate(navigationItem.screen.route) {
                         popUpTo(navController.graph.findStartDestination().id) {
