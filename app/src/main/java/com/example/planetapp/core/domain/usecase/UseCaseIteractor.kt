@@ -9,6 +9,10 @@ class UseCaseIteractor(val repository: IPlanetRepository) : UseCase {
         return repository.getPlanetList()
     }
 
+    override fun getPlanetSearch(query: String): List<PlanetModel> {
+        return repository.getPlanetSearch(query = query)
+    }
+
     override fun getPlanetDetail(id: Int): PlanetModel {
         return repository.getDetail(id)
     }

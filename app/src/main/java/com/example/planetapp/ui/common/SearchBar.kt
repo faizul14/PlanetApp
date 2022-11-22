@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.planetapp.ui.theme.PlanetAppTheme
+import okhttp3.internal.wait
 
 @Composable
 fun SearchBar(
@@ -31,7 +32,7 @@ fun SearchBar(
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
-                contentDescription = null
+                contentDescription = null,
             )
         },
         colors = TextFieldDefaults.textFieldColors(
@@ -39,6 +40,7 @@ fun SearchBar(
             disabledIndicatorColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
+            textColor = Color.White,
         ),
         placeholder = {
             Text("Find galaxy.")

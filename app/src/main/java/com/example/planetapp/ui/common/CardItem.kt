@@ -31,7 +31,6 @@ fun CardItem(
             .height(250.dp)
             .width(160.dp)
     ) {
-
         Card(
             modifier = modifier
                 .fillMaxWidth()
