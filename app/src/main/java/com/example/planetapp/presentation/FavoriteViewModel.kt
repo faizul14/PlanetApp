@@ -4,17 +4,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.planetapp.core.domain.model.PlanetModel
 import com.example.planetapp.core.domain.usecase.UseCase
-import com.example.planetapp.ui.screen.Favorite.CardState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel(val useCase: UseCase): ViewModel() {
-    private val _data = MutableStateFlow(
-        useCase.getPlanetFavorite()
+    private val _data:  MutableStateFlow<List<PlanetModel>?> = MutableStateFlow(
+        null
     )
-    val data : StateFlow<List<PlanetModel>> get() = _data
+    val data : StateFlow<List<PlanetModel>?> get() = _data
+
+    fun getData(){
+        viewModelScope.launch {
+            _data.value = useCase.getPlanetFavorite()
+        }
+    }
 
 //    private val _data2: MutableStateFlow<CardState> = MutableStateFlow()
 //    fun getFavorite(){

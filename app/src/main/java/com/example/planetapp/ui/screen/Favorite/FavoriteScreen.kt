@@ -18,7 +18,6 @@ import com.example.planetapp.presentation.FavoriteViewModel
 import com.example.planetapp.presentation.ViewModelFactory
 import com.example.planetapp.ui.common.CardItemFavovrite
 import com.example.planetapp.ui.common.NoData
-import com.example.planetapp.ui.screen.Favorite.CardState
 import com.example.planetapp.ui.theme.PlanetAppTheme
 
 @Composable
@@ -27,6 +26,7 @@ fun FavoriteScreen(
         .background(colorResource(id = R.color.bg)),
     viewModel: FavoriteViewModel = viewModel(factory = ViewModelFactory.getInstance())
 ) {
+    viewModel.getData()
     val data by viewModel.data.collectAsState()
     Log.d("Data", data.toString())
 //    PlanetContent(state = data)
@@ -42,12 +42,12 @@ fun FavoriteScreen(
 //            color = Color.White
 //        )
 
-        if (data.isNotEmpty())
+        if (data?.isNotEmpty() == true)
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(10.dp),
                 contentPadding = PaddingValues(vertical = 10.dp)
             ) {
-                items(data) {
+                items(data!!) {
                     CardItemFavovrite(
                         name = it.name,
                         photo = it.photoUrl,
@@ -59,41 +59,6 @@ fun FavoriteScreen(
 
     }
 }
-
-//@/*Composable
-//fun PlanetContent(
-//    modifier: Modifier = Modifier,
-//    state: CardState
-//) {
-//    Box(
-//        modifier = modifier
-//            .padding(16.dp)
-//            .fillMaxSize()
-//
-//    ) {
-////        Text(
-////            text = "Favorite",
-////            modifier = modifier.align(Alignment.Center),
-////            color = Color.White
-////        )
-//
-//        if (state.planet.isNotEmpty())
-//            LazyColumn(
-//                verticalArrangement = Arrangement.spacedBy(10.dp),
-//                contentPadding = PaddingValues(vertical = 10.dp)
-//            ) {
-//                items(state.planet) {
-//                    CardItemFavovrite(
-//                        name = it.name,
-//                        photo = it.photoUrl,
-//                        gradient = it.color
-//                    )
-//                }
-//            }
-//        else NoData()
-//
-//    }
-//}*/
 
 @Preview(showBackground = true)
 @Composable
