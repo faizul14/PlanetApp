@@ -12,7 +12,8 @@ object DataMapper {
                 id = it.id,
                 name = it.name,
                 photoUrl = it.photoUrl,
-                color = it.color
+                color = it.color,
+                isFavorite = false
             )
             planetList.addAll(listOf(planet))
         }
@@ -27,6 +28,7 @@ object DataMapper {
                 name = it.planet.name,
                 photoUrl = it.planet.photoUrl,
                 color = it.planet.color,
+                isFavorite = it.isFavorite
             )
             planetList.addAll(listOf(planet))
         }
@@ -39,6 +41,16 @@ object DataMapper {
             name = input.name,
             photoUrl = input.photoUrl,
             color = input.color,
+            isFavorite = false
+        )
+    }
+    fun mapDataPlanetListToPlanetDetailPlanetF(input: PlanetFvorite): PlanetModel{
+        return PlanetModel(
+            id = input.planet.id,
+            name = input.planet.name,
+            photoUrl = input.planet.photoUrl,
+            color = input.planet.color,
+            isFavorite = input.isFavorite
         )
     }
 }

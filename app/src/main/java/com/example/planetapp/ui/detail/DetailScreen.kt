@@ -52,7 +52,7 @@ fun DetailScreen(
                 navigateBack = navigateBack,
                 name = it.name,
                 photo = it.photoUrl,
-                isFavorite = false,
+                isFavorite = it.isFavorite,
                 navigaisFavorite = { isFavorite ->
                     viewModel.setFavorite(
                         id = it.id,

@@ -1,5 +1,6 @@
 package com.example.planetapp.core.data
 
+import android.util.Log
 import com.example.planetapp.core.data.fakedata.PlanetFvorite
 import com.example.planetapp.core.data.fakedata.PlanetList
 import com.example.planetapp.core.domain.model.PlanetModel
@@ -13,11 +14,15 @@ class PlanetRepository : IPlanetRepository {
 
         fun getInstance(): PlanetRepository =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: PlanetRepository()
+//                INSTANCE ?: PlanetRepository()
+                PlanetRepository().apply {
+                    INSTANCE = this
+                }
             }
     }
 
     private val PlanetF = mutableListOf<PlanetFvorite>()
+
 
     init {
         if (PlanetF.isEmpty()) {
@@ -28,18 +33,22 @@ class PlanetRepository : IPlanetRepository {
     }
 
     override fun getPlanetList(): List<PlanetModel> {
-        return DataMapper.mapDataToDataModel(PlanetList.planet)
+//        return DataMapper.mapDataToDataModel(PlanetList.planet)
+        return DataMapper.mapDataToDataModelFavorit(PlanetF)
     }
 
     override fun getPlanetSearch(query: String): List<PlanetModel> {
-        return DataMapper.mapDataToDataModel(PlanetList.planet.filter {
-            it.name.contains(query, ignoreCase = true)
+//        return DataMapper.mapDataToDataModel(PlanetList.planet.filter {
+//            it.name.contains(query, ignoreCase = true)
+//        })
+        return DataMapper.mapDataToDataModelFavorit(PlanetF.filter {
+            it.planet.name.contains(query, ignoreCase = true)
         })
     }
 
     override fun getDetail(id: Int): PlanetModel {
-        val data = PlanetList.planet.first { it.id == id }
-        return DataMapper.mapDataPlanetListToPlanetDetail(data)
+        val data = PlanetF.first { it.planet.id == id }
+        return DataMapper.mapDataPlanetListToPlanetDetailPlanetF(data)
     }
 
     override fun getFavorite(): List<PlanetModel> {
@@ -78,10 +87,11 @@ class PlanetRepository : IPlanetRepository {
 //        }
 //        return flowOf(result)
 //    }
-
+        Log.d("SETF", "id: $id, isFavorite: $isFavorite")
         val index = PlanetF.indexOfFirst {
             it.planet.id == id
         }
+
         val result = if (index >= 0) {
             val planetF = PlanetF[index]
             PlanetF[index] = planetF.copy(
@@ -91,6 +101,7 @@ class PlanetRepository : IPlanetRepository {
         } else {
             false
         }
+        Log.d("SETF", "result $result")
         return result
     }
 
