@@ -39,7 +39,7 @@ fun CardItemSecond(
                 .align(Alignment.BottomCenter),
             backgroundColor = Color.Transparent,
             shape = RoundedCornerShape(20.dp),
-            elevation = 7.dp
+//            elevation = 7.dp
 
         ) {
             Column(

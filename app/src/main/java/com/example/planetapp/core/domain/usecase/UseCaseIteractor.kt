@@ -16,4 +16,12 @@ class UseCaseIteractor(val repository: IPlanetRepository) : UseCase {
     override fun getPlanetDetail(id: Int): PlanetModel {
         return repository.getDetail(id)
     }
+
+    override fun setPlanetFavorite(id: Int, isFavorite: Boolean): Boolean {
+        return repository.setFavorite(id, isFavorite)
+    }
+
+    override fun getPlanetFavorite(): List<PlanetModel> {
+        return repository.getFavorite()
+    }
 }

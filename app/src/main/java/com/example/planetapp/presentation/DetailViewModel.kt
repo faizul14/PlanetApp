@@ -18,5 +18,11 @@ class DetailViewModel(private val useCase: UseCase) : ViewModel() {
         }
     }
 
+    fun setFavorite(id: Int, isFavorite: Boolean){
+        viewModelScope.launch {
+            useCase.setPlanetFavorite(id = id, isFavorite = isFavorite)
+        }
+    }
+
 
 }

@@ -9,5 +9,8 @@ interface IPlanetRepository {
 
     fun getDetail(id: Int) : PlanetModel
 
+    fun getFavorite() : List<PlanetModel>
+
+    fun setFavorite(id: Int, isFavorite: Boolean) : Boolean
 
 }

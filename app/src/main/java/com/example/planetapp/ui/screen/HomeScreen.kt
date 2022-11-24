@@ -33,7 +33,6 @@ fun HomeScreen(
         modifier
             .verticalScroll(rememberScrollState())
             .fillMaxSize()
-            .fillMaxHeight()
             .background(colorResource(id = R.color.bg))
     ) {
         Header()

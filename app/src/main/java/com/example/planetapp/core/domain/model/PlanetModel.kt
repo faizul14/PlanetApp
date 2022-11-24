@@ -6,4 +6,4 @@ data class PlanetModel(
     val name: String,
     val photoUrl: String,
     val color: List<androidx.compose.ui.graphics.Color>
-)
+    )

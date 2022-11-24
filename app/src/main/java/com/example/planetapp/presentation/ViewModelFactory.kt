@@ -24,6 +24,9 @@ class ViewModelFactory(val useCase: UseCase) : ViewModelProvider.NewInstanceFact
         if (modelClass.isAssignableFrom(DetailViewModel::class.java)){
             return DetailViewModel(useCase) as T
         }
+        if (modelClass.isAssignableFrom(FavoriteViewModel::class.java)){
+            return FavoriteViewModel(useCase) as T
+        }
         throw IllegalArgumentException ("Message ${modelClass.name}")
     }
 

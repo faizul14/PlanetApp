@@ -1,6 +1,5 @@
 package com.example.planetapp.ui.detail
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,6 +8,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -17,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
@@ -25,7 +25,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.planetapp.presentation.DetailViewModel
 import com.example.planetapp.presentation.ViewModelFactory
@@ -34,12 +33,13 @@ import com.example.planetapp.ui.theme.PlanetAppTheme
 @Composable
 fun DetailScreen(
     modifier: Modifier = Modifier,
-    detailId : Int,
-    navigateBack : () -> Unit,
+    detailId: Int,
+    navigateBack: () -> Unit,
     viewModel: DetailViewModel = viewModel(factory = ViewModelFactory.getInstance())
 ) {
     viewModel.getPlanetId(detailId)
     val data by viewModel.data.collectAsState()
+
     Column(
         modifier
             .background(colorResource(id = com.example.planetapp.R.color.bg))
@@ -51,7 +51,14 @@ fun DetailScreen(
             ImageLoad(
                 navigateBack = navigateBack,
                 name = it.name,
-                photo = it.photoUrl
+                photo = it.photoUrl,
+                isFavorite = false,
+                navigaisFavorite = { isFavorite ->
+                    viewModel.setFavorite(
+                        id = it.id,
+                        isFavorite = isFavorite
+                    )
+                }
             )
         }
         Spacer(
@@ -67,13 +74,16 @@ fun DetailScreen(
     }
 }
 
+
 @Composable
 fun ImageLoad(
     modifier: Modifier = Modifier,
-    navigateBack : () -> Unit,
+    navigateBack: () -> Unit,
+    navigaisFavorite: (Boolean) -> Unit,
     name: String,
     photo: String,
-    ) {
+    isFavorite: Boolean
+) {
     Box(
         modifier
             .fillMaxWidth()
@@ -90,6 +100,17 @@ fun ImageLoad(
                     navigateBack()
                 },
         )
+        Icon(
+            imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+            contentDescription = null,
+            tint = Color.White,
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .clickable {
+                    navigaisFavorite(!isFavorite)
+                },
+        )
+
         AsyncImage(
             model = photo,
             contentDescription = "imageclip",

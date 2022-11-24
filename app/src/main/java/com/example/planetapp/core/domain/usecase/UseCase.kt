@@ -7,4 +7,6 @@ interface UseCase {
     fun getPlanetList() : List<PlanetModel>
     fun getPlanetSearch(query: String) : List<PlanetModel>
     fun getPlanetDetail(id: Int) : PlanetModel
+    fun setPlanetFavorite(id: Int, isFavorite: Boolean) : Boolean
+    fun getPlanetFavorite() : List<PlanetModel>
 }
