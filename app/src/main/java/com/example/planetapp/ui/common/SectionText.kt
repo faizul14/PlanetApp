@@ -21,7 +21,7 @@ import com.example.planetapp.ui.theme.PlanetAppTheme
 
 @Composable
 fun SectionText(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier.padding(bottom = 5.dp),
     content: String
 ) {
     Row(

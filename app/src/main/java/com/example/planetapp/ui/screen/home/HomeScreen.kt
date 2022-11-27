@@ -34,6 +34,7 @@ fun HomeScreen(
             .fillMaxSize()
             .background(colorResource(id = R.color.bg))
             .verticalScroll(rememberScrollState())
+            .padding(bottom = 0.dp)
     ) {
         Header()
         SearchBar(
@@ -61,7 +62,7 @@ fun HomeScreen(
                 }
             }
         else NoData()
-        Spacer(modifier = modifier.padding(top = 10.dp))
+//        Spacer(modifier = modifier.padding(top = 5.dp))
         SectionText(content = "You may also like")
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(10.dp),

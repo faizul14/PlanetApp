@@ -24,7 +24,7 @@ import com.example.planetapp.ui.theme.PlanetAppTheme
 
 @Composable
 fun Header(
-    modifier: Modifier = Modifier.padding( bottom = 10.dp)
+    modifier: Modifier = Modifier.padding( bottom = 5.dp)
 ) {
     Row(
         modifier = modifier

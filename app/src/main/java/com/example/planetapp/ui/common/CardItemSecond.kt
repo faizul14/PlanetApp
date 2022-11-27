@@ -15,7 +15,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.graphics.toColorLong
 import coil.compose.AsyncImage
 import com.example.planetapp.ui.theme.PlanetAppTheme
 
@@ -30,12 +29,12 @@ fun CardItemSecond(
         modifier
             .height(200.dp)
             .width(150.dp)
+            .background(Color.Transparent)
     ) {
 
         Card(
             modifier = modifier
-//                .fillMaxWidth()
-//                .fillMaxHeight()
+
                 .fillMaxSize()
                 .align(Alignment.BottomCenter),
             backgroundColor = Color.Transparent,
@@ -46,8 +45,8 @@ fun CardItemSecond(
             Column(
                 verticalArrangement = Arrangement.Bottom,
                 modifier = modifier
-//                    .background(brush = Brush.horizontalGradient(colors = gradient))
-                    .padding(10.dp),
+                    .padding(10.dp)
+                    .fillMaxSize(),
 
                 ) {
                 AsyncImage(
@@ -77,16 +76,6 @@ fun CardItemSecond(
                 )
             }
         }
-//        AsyncImage(
-//            model = photo,
-//            contentDescription = "image",
-//            modifier
-//                .height(200.dp)
-//                .width(200.dp)
-//                .padding(10.dp)
-//                .align(Alignment.Center)
-//                .offset(30.dp, -40.dp)
-//        )
 
     }
 }
