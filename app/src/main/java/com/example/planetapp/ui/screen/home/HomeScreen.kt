@@ -31,9 +31,9 @@ fun HomeScreen(
     var dataSearch by rememberSaveable { mutableStateOf("") }
     Column(
         modifier
-            .verticalScroll(rememberScrollState())
             .fillMaxSize()
             .background(colorResource(id = R.color.bg))
+            .verticalScroll(rememberScrollState())
     ) {
         Header()
         SearchBar(

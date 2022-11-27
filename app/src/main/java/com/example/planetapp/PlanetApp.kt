@@ -51,7 +51,11 @@ fun PlanetApp(
                 )
             }
             composable(Screen.Favorite.route) {
-                FavoriteScreen()
+                FavoriteScreen(
+                    navigateToDetail = {data ->
+                        navController.navigate(Screen.DetailF.createRoute(data))
+                    }
+                )
             }
             composable(Screen.Profile.route) {
                 ProfileScreen()

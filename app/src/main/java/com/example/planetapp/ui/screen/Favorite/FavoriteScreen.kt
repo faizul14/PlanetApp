@@ -2,6 +2,7 @@ package com.example.planetapp.ui.screen
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,7 +25,8 @@ import com.example.planetapp.ui.theme.PlanetAppTheme
 fun FavoriteScreen(
     modifier: Modifier = Modifier
         .background(colorResource(id = R.color.bg)),
-    viewModel: FavoriteViewModel = viewModel(factory = ViewModelFactory.getInstance())
+    viewModel: FavoriteViewModel = viewModel(factory = ViewModelFactory.getInstance()),
+    navigateToDetail: (Int) -> Unit
 ) {
     viewModel.getData()
     val data by viewModel.data.collectAsState()
@@ -51,7 +53,10 @@ fun FavoriteScreen(
                     CardItemFavovrite(
                         name = it.name,
                         photo = it.photoUrl,
-                        gradient = it.color
+                        gradient = it.color,
+                        modifier = Modifier.clickable{
+                            navigateToDetail(it.id)
+                        }
                     )
                 }
             }
@@ -64,6 +69,8 @@ fun FavoriteScreen(
 @Composable
 fun FavoriteScreenPreview() {
     PlanetAppTheme {
-        FavoriteScreen()
+        FavoriteScreen(
+            navigateToDetail = {}
+        )
     }
 }
