@@ -34,8 +34,9 @@ fun CardItemSecond(
 
         Card(
             modifier = modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
+//                .fillMaxWidth()
+//                .fillMaxHeight()
+                .fillMaxSize()
                 .align(Alignment.BottomCenter),
             backgroundColor = Color.Transparent,
             shape = RoundedCornerShape(20.dp),

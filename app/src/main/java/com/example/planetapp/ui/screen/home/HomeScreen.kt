@@ -50,7 +50,7 @@ fun HomeScreen(
                 contentPadding = PaddingValues(horizontal = 16.dp),
             ) {
 
-                items(data) {
+                items(data, key = {it.id}) {
                     CardItem(photo = it.photoUrl, name = it.name, gradient = it.color,
                         modifier = Modifier
                             .animateItemPlacement(tween(durationMillis = 100))
@@ -67,11 +67,15 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(10.dp),
             contentPadding = PaddingValues(horizontal = 16.dp),
         ) {
-            items(PlanetList.planetShifled) {
-                CardItemSecond(photo = it.photoUrl, name = it.name, gradient = it.color)
-                modifier.clickable {
-                    navigateToDetail(it.id)
-                }
+            items(PlanetList.planetShifled, key = {it.id}) {
+                CardItemSecond(
+                    photo = it.photoUrl,
+                    name = it.name,
+                    gradient = it.color,
+                    modifier = modifier.clickable {
+                        navigateToDetail(it.id)
+                    }
+                )
             }
         }
 

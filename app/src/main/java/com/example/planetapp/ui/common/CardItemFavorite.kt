@@ -7,14 +7,20 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.example.planetapp.ui.theme.PlanetAppTheme
 
 @Composable
@@ -44,17 +50,36 @@ fun CardItemFavovrite(
                     .fillMaxHeight()
                     .background(brush = Brush.verticalGradient(colors = gradient))
             ) {
-                Box(
-
+                Column(
+                    modifier = modifier
+                        .align(Alignment.CenterVertically)
+                        .offset(70.dp, 0.dp)
+                        .padding(end = 100.dp)
                 ) {
-
+                    Text(
+                        text = name,
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        style = MaterialTheme.typography.subtitle1.copy(
+                            fontWeight = FontWeight.ExtraBold
+                        ),
+                    )
+                    Text(
+                        text = stringResource(id = com.example.planetapp.R.string.ex_contnet),
+                        color = Color.White,
+                        fontSize = 12.sp,
+                        maxLines = 2,
+                        modifier = modifier
+                            .padding(top = 5.dp,)
+                    )
                 }
             }
         }
-        Image(
-            painter = painterResource(id = com.example.planetapp.R.drawable.mars),
+        AsyncImage(
+            model = photo,
             contentDescription = null,
-            modifier.align(Alignment.CenterStart)
+            modifier
+                .align(Alignment.CenterStart)
                 .size(140.dp)
                 .offset(-80.dp, 0.dp)
         )
